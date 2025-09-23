@@ -18,19 +18,17 @@ def pointDistance(p1, p2):
 def longestCommonSubseq(T1, T2):
     m, n  = len(T1), len(T2)
     # base case
-    print("m: ", m, " n: ", n)
     if m == 0 or n == 0:
         return 0
     else:
-        print("Threshold compare: ", pointDistance(T1[-1], T2[-1]))
         if pointDistance(T1[-1], T2[-1]) <= THRESHOLD:
             dist = 1 + longestCommonSubseq(T1[:-1], T2[:-1])
-            print("Distance: ",  dist)
         else:
-            dist = max(longestCommonSubseq(T1[:-1], T2), longestCommonSubseq(T1, T2[:-1]))
-            print("Distance_else: ", dist)  
-    print(dist)
+            dist = max(longestCommonSubseq(T1[:-1], T2), longestCommonSubseq(T1, T2[:-1])) 
 
-longestCommonSubseq(T1,T2)
+    return dist
+
+dist = longestCommonSubseq(T1,T2)
+print(dist)
         
     
