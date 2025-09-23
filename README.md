@@ -10,11 +10,12 @@ This repository implements non-learning based measures which computes trajectory
 ## Dynamic Time Warping Distance (DTW)
     * DTW or dynamic time warping is similar to ED but it can deal with different length trajectories AND can align one point iwth mroe consecutive points of another trajectory.
     * It is a non-metric and is most commonly used for similarity computation. 
-
+    * TC is O(mn) where m = len(T1) and n = len(T2) with memoisation. Without it is 3^mn
 ## Longest Common Subsequence Distance (LCSS)
     * Longest common sub sequence(LCSS) distance between two trajectories T1 and T2 is defined as the size of longest common sub sew between two trajectories.
     * It works on a threshold where if dis(p1,p2) <= Threshold, then p1 and p2 are a match pair.
     * LCSS distance finds ALL match pairs. It is a non-metric and sensitive to noise as compared to Euclidean Distance metric.
+    * TC is O(mn) where m = len(T1) and n = len(T2) with memoisation. Without it is 3^mn
 
 ## Edit Distance on Real Sequence (EDR)
     * 

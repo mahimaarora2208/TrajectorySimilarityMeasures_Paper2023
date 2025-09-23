@@ -2,6 +2,7 @@ import math
 ''' 
     * DTW or dynamic time warping is similar to ED but it can deal with different length trajectories AND can align one point iwth mroe consecutive points of another trajectory.
     * It is a non-metric and is most commonly used for similarity computation. 
+    * TC is O(mn) where m = len(T1) and n = len(T2)
 '''
 T1 = [(1,1),(3,4),(4,0),(6,2),(7,1)]
 T2 = [(1,5),(1,2),(3,2),(5,3),(8,3),(8,5)]
