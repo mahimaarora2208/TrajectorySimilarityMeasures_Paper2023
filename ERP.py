@@ -3,7 +3,7 @@ import math
     * ERP or edit distance with real penalty is also an edit-distance based measure but it IS a metric unlike EDR and DTW which are non-metric.
     * This is a metric that can be used for indexing and pruning.
     * ERP does NOT require a threshold parameter but a reference point i.e. gap point. 
-    TC is O(mn) where m = len(T1) and n = len(T2)
+    * TC is O(mn) where m = len(T1) and n = len(T2)
 
 '''
 
