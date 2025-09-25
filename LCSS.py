@@ -21,10 +21,14 @@ def longestCommonSubseq(T1, T2):
     if m == 0 or n == 0:
         return 0
     else:
-        if pointDistance(T1[-1], T2[-1]) <= THRESHOLD:
-            dist = 1 + longestCommonSubseq(T1[:-1], T2[:-1])
+        if (tuple(T1),tuple(T2)) not in memo.keys():
+            if pointDistance(T1[-1], T2[-1]) <= THRESHOLD:
+                dist = 1 + longestCommonSubseq(T1[:-1], T2[:-1])
+            else:
+                dist = max(longestCommonSubseq(T1[:-1], T2), longestCommonSubseq(T1, T2[:-1]))
+            memo[(tuple(T1),tuple(T2))] = dist
         else:
-            dist = max(longestCommonSubseq(T1[:-1], T2), longestCommonSubseq(T1, T2[:-1])) 
+            return memo[(tuple(T1),tuple(T2))]
 
     return dist
 

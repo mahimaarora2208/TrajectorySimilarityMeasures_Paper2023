@@ -8,7 +8,7 @@ import math
 T1 = [(1,1),(3,4),(4,0),(6,2),(7,1)]
 T2 = [(1,5),(1,2),(3,2),(5,3),(8,3),(8,5)]
 THRESHOLD = 1
-
+memo = {}
 def pointDistance(p1, p2):
     return math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)
 
@@ -25,10 +25,13 @@ def editDistanceOnRealSequence(T1, T2):
             cost = 0
         else:
             cost = 1
-    
-        dist = min(editDistanceOnRealSequence(T1[:-1], T2) + 1,
+        if (tuple(T1),tuple(T2)) not in memo.keys():
+            dist = min(editDistanceOnRealSequence(T1[:-1], T2) + 1,
             editDistanceOnRealSequence(T1, T2[:-1]) + 1,
             editDistanceOnRealSequence(T1[:-1], T2[:-1]) + cost) 
+            memo[(tuple(T1), tuple(T2))] = dist
+        else:
+            return memo[(tuple(T1),tuple(T2))]
     return dist
         
 

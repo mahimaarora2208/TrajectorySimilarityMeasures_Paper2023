@@ -10,6 +10,7 @@ import math
 T1 = [(1,1),(3,4),(4,0),(6,2),(7,1)]
 T2 = [(1,5),(1,2),(3,2),(5,3),(8,3),(8,5)]
 REFERENCE_POINT = (3,2)
+memo = {}
 
 def pointDistance(p1, p2):
     return math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)
@@ -30,9 +31,13 @@ def editDistanceWithRealPenality(T1, T2):
             dist += pointDistance(T1[i], REFERENCE_POINT)
         return dist
     else:
-        dist = min(editDistanceWithRealPenality(T1[:-1], T2[:-1]) + pointDistance(T1[-1], T2[-1]),
+        if (tuple(T1),tuple(T2)) not in memo.keys():
+            dist = min(editDistanceWithRealPenality(T1[:-1], T2[:-1]) + pointDistance(T1[-1], T2[-1]),
                    editDistanceWithRealPenality(T1, T2[:-1]) + pointDistance(T2[-1], REFERENCE_POINT),
                    editDistanceWithRealPenality(T1[:-1], T2) + pointDistance(T1[-1],REFERENCE_POINT))
+            memo[(tuple(T1),tuple(T2))] = dist
+        else:
+            return memo[(tuple(T1),tuple(T2))]
     return dist
 
 dist = editDistanceWithRealPenality(T1, T2)
